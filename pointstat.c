@@ -1,3 +1,3 @@
 void main(void){
-    stat_part_a()
+    stat_part_a("pointcloud.txt");
 }

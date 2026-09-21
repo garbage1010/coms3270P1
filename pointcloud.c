@@ -1,7 +1,12 @@
 #include <stdio.h>
 #include <stddef.h>
-#include "poindcloud.h"
-void stat_part_a(void){
+#include "pointcloud.h"
+void stat_part_a(const char *filename){
+    FILE *fp = fopen(filename, "r");
+    if(fp == NULL){
+        perror("Could not open file");
+        return;
+    }
 
     float x, y, h;
     size_t count = 0;
@@ -11,7 +16,7 @@ void stat_part_a(void){
     double height_sum = 0.0; 
 
     //iterate through data.. sum and assign min/max
-    while(scanf("%f %f %f", &x, &y, &h) == 3){
+    while(fscanf(fp, "%f %f %f", &x, &y, &h) == 3){
         if(count == 0 || h < h_min){
             x_min = x; y_min = y; h_min = h;
         }
@@ -22,7 +27,7 @@ void stat_part_a(void){
         height_sum += h;
         count++;
     }
-
+    fclose(fp);
     //sanity check
     if(count == 0){
         printf("Error: no points read\n");
