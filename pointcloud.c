@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-stat_part_a(){
+void stat_part_a(void){
 
     float x, y, h;
     size_t count = 0;
@@ -31,6 +31,4 @@ stat_part_a(){
     printf("max height (x,y,z): (%f, &f, %f)\n", x_max, y_max, h_max);
     printf("min height (x,y,z): (%f, &f, %f)\n", x_min, y_min, h_min);
     printf("average height: %f\n", height_sum / count);
-    
-
 }
