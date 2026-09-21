@@ -1,5 +1,6 @@
 #include <stdio.h>
-
+#include <stddef.h>
+#include "poindcloud.h"
 void stat_part_a(void){
 
     float x, y, h;
