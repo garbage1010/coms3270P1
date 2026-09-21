@@ -1,7 +1,3 @@
 main(){
-
-}
-
-stat_part_a(){
-
+    stat_part_a()
 }
