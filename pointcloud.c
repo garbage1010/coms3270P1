@@ -38,8 +38,8 @@ void stat_part_a(const char *filename){
     }
 
     //print
-    printf("max height (x,y,z): (%f, &f, %f)\n", x_max, y_max, h_max);
-    printf("min height (x,y,z): (%f, &f, %f)\n", x_min, y_min, h_min);
+    printf("max height (x,y,z): (%f, %f, %f)\n", x_max, y_max, h_max);
+    printf("min height (x,y,z): (%f, %f, %f)\n", x_min, y_min, h_min);
     printf("average height: %f\n", height_sum / count);
 }
 

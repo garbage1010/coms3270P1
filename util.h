@@ -1,7 +1,7 @@
 #ifndef UTIL_H
 #define UTIL_H 
 
-
+#define LIST_INITIAL_SIZE 10
 #define INDEX(row, col, columns) (((row) * (columns)) + (col))
 
 //utility structures - given
@@ -15,7 +15,7 @@ typedef struct
 //given prototype functions
 int listInit(List* l, int max_elmt_size);
 int listAddEnd(List* l, void* elmt);
-void *listGet(List* l, int index)
+void *listGet(List* l, int index);
 
 
 
