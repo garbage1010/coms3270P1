@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stddef.h>
-#include <stdlib.h>
+#include <stdlib.h> 
 #include "pointcloud.h"
 #include "util.h"
 #include "bmp.h"
 
 //part a
-void stat_part_a(const char *filename){
-    FILE *fp = fopen(filename, "r");
+void stat_part_a(void){
+    FILE *fp = stdin;
     if(fp == NULL){
         perror("Could not open file");
         return;

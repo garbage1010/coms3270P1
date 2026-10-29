@@ -4,12 +4,12 @@
 #include "util.h"
 
 typedef struct pcd {
-    double x;
-    double y;
-    double z;
-    double wd;
+    double x; //cell coordinate (m)
+    double y; //cell coordinate (m)
+    double z;  //terrain height
+    double wd; //current water depth
 
-    //pointers
+    //pointers - neighbors
     struct pcd *north;
     struct pcd *south;
     struct pcd *east;
@@ -30,7 +30,7 @@ typedef struct {
 } pointcloud_t;
 
 
-void stat_part_a(const char *filename);
+void stat_part_a(void);
 int readPointCloudData(FILE *stream, List *lst);
 void imagePointCloud( List *l, char *filename );
 int  readPointCloud(FILE *stream, pointcloud_t *pc);
