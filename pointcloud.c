@@ -1,11 +1,23 @@
+/*
+ * pointcloud.c - point-cloud reading, statistics, imaging, and the
+ * watershed simulation.
+ *   Part a: stat_part_a
+ *   Part b: readPointCloudData, imagePointCloud
+ *   Part c: readPointCloud, initializeWatershed, watershedStep,
+ *           imagePointCloudWater
+ */
 #include <stdio.h>
 #include <stddef.h>
 #include <stdlib.h> 
 #include "pointcloud.h"
 #include "util.h"
 #include "bmp.h"
-
-//part a
+/*
+ * stat_part_a - print the location and height of the minimum and
+ * maximum points and the average height of the file's points.
+ * filename: from stdin
+ * 
+ */
 void stat_part_a(void){
     FILE *fp = stdin;
     if(fp == NULL){
@@ -45,6 +57,14 @@ void stat_part_a(void){
 }
 
 //part b
+
+/*
+ * readPointCloudData - read "x y z" triples from stream until EOF and
+ * append each as a pcd_t to lst
+ * Water starts at 0 and the neighbor pointers start NULL.
+ * Returns the number of columns , or -1 if the list ran out of memory.
+ * Points are stored in file order; the caller decides how to arrange them.
+ */
 int readPointCloudData(FILE *stream, List *lst)
 {
     pcd_t p;
@@ -89,6 +109,10 @@ static int countColumns(List *l)
     return cols;
 }
 
+/*
+ * imagePointCloud - write a grayscale height map of the list to a GIF.
+ *
+ */
 void imagePointCloud(List *l, char *filename)
 {
     if (l == NULL || l->size == 0 || filename == NULL) {
@@ -129,6 +153,10 @@ void imagePointCloud(List *l, char *filename)
 }
 
 //part c
+/*
+ * cmpPoints - (helper). Orders by y first, then x,
+ * so the sorted array runs south-to-north, west-to-east.
+ */
 static int cmpPoints(const void *a, const void *b) {
     const pcd_t *p = a, *q = b;
     if (p->y < q->y) return -1;
@@ -175,7 +203,10 @@ int readPointCloud(FILE *stream, pointcloud_t *pc) {
     }
     return 0;
 }
-
+/*
+ * initializeWatershed - set the water depth (wd) of every point to amount.
+ * Returns 0 on success, 1 if NULL.
+ */
 int initializeWatershed(pointcloud_t *pc, double amount) {
     if (pc == NULL) return 1;
     pcd_t *pts = pc->points.data;

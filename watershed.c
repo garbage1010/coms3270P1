@@ -1,3 +1,16 @@
+/*
+ * watershed.c - main program for the "watershed" executable (Part c).
+ *
+ * Usage:
+ *   ./watershed <ifile> <iter> <iwater> <wcoef> <ecoef> <ofilebase> [seq]
+ *
+ * Reads the point cloud in ifile, gives every cell iwater units of
+ * water, and runs iter simulation steps. Without seq it writes one
+ * image, <ofilebase>.gif, at the end. With seq it writes
+ * <ofilebase><step>.gif every seq steps instead.
+ *
+ * Exit status: 0 on success, 1 on bad arguments or a read error.
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include "pointcloud.h"
