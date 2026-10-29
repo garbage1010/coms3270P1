@@ -7,7 +7,7 @@ typedef struct pcd {
     double x;
     double y;
     double z;
-    double water;
+    double wd;
 
     //pointers
     struct pcd *north;
@@ -15,8 +15,27 @@ typedef struct pcd {
     struct pcd *east;
     struct pcd *west;
 } pcd_t;
+
+typedef struct {
+    double minz, maxz;
+} stats_t;
+
+typedef struct {
+    List points;        
+    int rows;           
+    int cols;           
+    stats_t stats;      // min/max height, for imaging
+    double wcoef, ecoef;
+    double *scratch;    // next-step water, one double per point
+} pointcloud_t;
+
+
 void stat_part_a(const char *filename);
 int readPointCloudData(FILE *stream, List *lst);
 void imagePointCloud( List *l, char *filename );
+int  readPointCloud(FILE *stream, pointcloud_t *pc);
+int  initializeWatershed(pointcloud_t *, double);
+void watershedStep(pointcloud_t *pc);
+void imagePointCloudWater(pointcloud_t *pc, double maxwd, char *filename);
 
 #endif
